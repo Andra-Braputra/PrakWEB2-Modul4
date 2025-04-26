@@ -1,4 +1,14 @@
-<?php
+<html>
+    <head>
+        <style>
+            .judul{
+                background-color: gray;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <?php
 $data = [
     "Ridho" => [
         ["mata_kuliah" => "Pemrograman I", "sks" => 2],
@@ -19,7 +29,7 @@ $data = [
 ];
 
 echo "<table border='1' cellpadding='5' cellspacing='0'>";
-echo "<tr><th>No</th><th>Nama</th><th>Mata Kuliah diambil</th><th>SKS</th><th>Total SKS</th><th>Keterangan</th></tr>";
+echo "<tr class ='judul'><th>No</th><th>Nama</th><th>Mata Kuliah diambil</th><th>SKS</th><th>Total SKS</th><th>Keterangan</th></tr>";
 
 $no = 1;
 foreach ($data as $nama => $matkul) {
@@ -41,7 +51,12 @@ foreach ($data as $nama => $matkul) {
         echo "<td>{$m['sks']}</td>";
         if ($first) {
             echo "<td rowspan='$rowspan'>{$total_sks}</td>";
-            echo "<td rowspan='$rowspan'>{$keterangan}</td>";
+            if ($total_sks < 7) {
+                echo "<td style='background-color:red' rowspan='$rowspan'>{$keterangan}</td>";
+            } else {
+                echo "<td style='background-color:green' rowspan='$rowspan'>{$keterangan}</td>";
+            }
+            
         }
         echo "</tr>";
         $first = false;
@@ -51,3 +66,5 @@ foreach ($data as $nama => $matkul) {
 
 echo "</table>";
 ?>
+    </body>
+</html>
